@@ -1,7 +1,9 @@
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import MovieList from '../MovieList/MovieList'
 import MovieItem from '../MovieList/MovieItem';
+import Details from '../Details/Details';
+import AddMovie from '../AddMovie/AddMovie';
 //add dispatch and use effect
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -21,19 +23,28 @@ function App() {
     <div className="App">
       <h1>The Movies Saga!</h1>
       <Router>
+        <nav>
+          <Link to="/addMovie"> Add Movie </Link>
+        </nav>
+
         <Route path="/" exact>
           <MovieList />
         </Route>
 
-        //add details page & router
-        {/* <Route path="/details">
+        {/* add details page & router */}
+        <Route path="/details">
           <Details />
-        </Route> */}
+        </Route>
 
-        //add movie item page and route
+        {/* //add movie item page and route */}
         <Route path="/movieItem">
           <MovieItem />
         </Route>
+
+        <Route path="/addMovie">
+          <AddMovie />
+        </Route>
+
       </Router>
     </div>
   );
