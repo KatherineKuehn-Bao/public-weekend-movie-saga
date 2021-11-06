@@ -26,6 +26,10 @@ For this weekend challenge you'll be expanding on a movie management application
 
 ## Notes
 
+[ ] - Detailed View
+[ ] - Genres 
+[ ]- add movie info
+
 ### Relationships
 Genres can be applied to many different movies. Movies can have multiple genres. This is Many-to-Many! Junction Table time!
 
