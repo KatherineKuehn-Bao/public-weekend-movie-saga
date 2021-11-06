@@ -6,26 +6,20 @@ import { useSelector } from "react-redux";
 //Show the selected movie data from Redux
 function Details() {
     //data from redux
-    const genres = useSelector(store => store.genres);
-    const movies = useSelector((store) => store.movie);
-    const selectedId = useSelector(store => store.selectedId)
-    // const selectedMovie = useSelector((store) => store.)
+    // const genres = useSelector(store => store.genres);
+    const movies = useSelector((store) => store.movies);
+    const selectedMovie = useSelector(store => store.selectedId)
 
     // let selectedMovie = movies.filter(movie => movie.id === selectedId)
+    // selectedMovie = selectedMovie[0]; NOT WORKING 
 
     // useEffect(() => {
     // })
 
-    // console.log(selectedMovie);
+    // console.log('selectedID', selectedId);
     // console.log(genres);
-    // console.log(movies);
-
-    // return (
-    //     <div>
-    //         {genres.map(genre => genre.name).join(', ')}
-    //     </div>
-    // );
-
+    console.log('movies', movies);
+    console.log('selected movies', selectedMovie);
 
 
     return (
@@ -35,7 +29,10 @@ function Details() {
                 selectedMovie.title ? (
                     <>
                         <h2> {selectedMovie.title} </h2>
-                        <img src={movies.poster} alt={movies.title} />
+                     {/* {genres.map(genre => genre.name).join(', ')} */}
+
+                        <img src={selectedMovie.poster} alt={selectedMovie.title} />
+                        <p> {selectedMovie.description} </p>
                     </>
                 ) : (
                     <p> No Movie Selected </p>

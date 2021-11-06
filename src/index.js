@@ -87,9 +87,11 @@ const genres = (state = [], action) => {
     }
 }
 //create reducer to hold selected movie for details view 
-const selectedMovie = (state ={}, action) => {
+
+//ID IS ACTUALLY WHOLE MOVIE 
+const selectedId= (state ='', action) => {
     switch (action.type) {
-        case 'SET_SELECTED_MOVIE':
+        case 'SET_SELECTED_ID':
             return action.payload;
         default:
             return state;
@@ -101,7 +103,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        selectedMovie,
+        selectedId,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
