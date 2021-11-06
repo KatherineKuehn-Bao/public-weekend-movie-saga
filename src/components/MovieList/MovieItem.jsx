@@ -9,7 +9,8 @@ function MovieItem({ movie }) {
     const handleSelectMovie = (movie) => {
         //store selected movie object in redux 
         dispatch({ type: "SET_SELECTED_MOVIE", payload: movie });
-        // history.push('/details');
+        //push to details view 
+        history.push('/details');
     };
 
 
