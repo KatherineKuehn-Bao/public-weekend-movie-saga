@@ -14,7 +14,30 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery ('ADD_MOVIE', addMovie);
+    yield takeEvery ('SET_ALL_DETAILS', setAllDetails);
 }
+
+function* setAllDetails() {
+    try{
+        const details = yield axios.get('/api/movie');
+        console.log('get all', movies.data);
+        yield put({ type: 'SET_ALL_DETAILS', payload: details.data})        
+    }catch(err){
+        console.log('Error', err);
+    }
+}
+
+//hold the details 
+const details = (state = {}, action) => {
+    switch(action.type){
+        case 'SET_ALL_DETAILS':
+            return action.payload
+            default:
+                return state;
+    }
+}
+
 
 function* fetchAllMovies() {
     // get all movies from the DB
@@ -28,6 +51,17 @@ function* fetchAllMovies() {
     }
         
 }
+
+//Add new movie to server then get movie data 
+function* addMovie(action){
+    try{
+        yield axios.post('/api/movie', action.payload );
+        yield put ({type: 'FETCH_MOVIES'});
+    } catch(err){
+        console.log('error in POST', err);
+    }
+}
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

@@ -7,7 +7,7 @@ function AddMovie() {
     const dispatch = useDispatch();
 
     //data from redux
-    const movies = useSelector(store => store.movies);
+    // const movies = useSelector(store => store.movies);
 
     //local state for form inputs
     let [title, setTitle] = useState('');
@@ -15,13 +15,16 @@ function AddMovie() {
     let [description, setDescription] = useState('');
 
     //handle submit
-    const handleClick = () => {
-        console.log('new movie', title, poster, description);
-    }
+    const handleClick = (event) => {
+        event.preventDefault();
+        console.log('new movie', title, poster, description, genre_id);
+        dispatch({ type: 'ADD_MOVIE', payload: { title, poster, description } });
+    };
+
     return (
         <div>
             <h1> Add Movie </h1>
-            <form>
+            <form onSubmit={handleClick}>
                 <input
                     type="text"
                     value={title}
@@ -29,16 +32,18 @@ function AddMovie() {
 
                 <input
                     type="text"
+                    placeholder="image"
                     value={poster}
                     onChange={(evt) => setPoster(evt.target.value)} />
 
                 <input
                     type="text"
+                    placeholder="description"
                     value={description}
                     onChange={(evt) => setDescription(evt.target.value)} />
 
-                    <button onClick={handleClick}> Add Movie! </button>
-            </form>
+                <button type="submit"> Add Movie! </button>
+            </form >
 
         </div>
     );
