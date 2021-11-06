@@ -6,9 +6,10 @@ function MovieItem({ movie }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSelectMovie = (movie) => {
+    const handleClick = (movie) => {
         //store selected movie object in redux 
-        dispatch({ type: "SET_SELECTED_ID", payload: movie });
+        dispatch({ type: "SET_SELECTED_MOVIE", payload: movie })
+        // dispatch({type: "FETCH_GENRES", payload: movie});
         
         //push to details view 
         history.push('/details');
@@ -17,7 +18,7 @@ function MovieItem({ movie }) {
 
     return (
         <div>
-            <div key={movie.id} onClick={() => handleSelectMovie(movie)} >
+            <div key={movie.id} onClick={() => handleClick(movie)} >
                 <h3>{movie.title}</h3>
                 <img src={movie.poster} alt={movie.title} />
             </div>
