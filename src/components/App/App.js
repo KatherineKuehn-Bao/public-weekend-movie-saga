@@ -25,6 +25,8 @@ function App() {
       <Router>
         <nav>
           <Link to="/addMovie"> Add Movie </Link>
+          <br/ >
+          <Link to="/"> Home Page </Link>
         </nav>
 
         <Route path="/" exact>

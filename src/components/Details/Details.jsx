@@ -20,7 +20,7 @@ function Details() {
         axios.get(`/api/genre/details?id=${selectedMovie.id}`)
             .then(response => {
                 console.log(`response`, response)
-                setGenres(response.data);  
+                setGenres(response.data);
             })
             .catch(err => console.log(`error in get`, err));
         console.log(`GET GENRE`, selectedMovie.id);
@@ -34,16 +34,15 @@ function Details() {
 
     return (
         <section>
-            <h1> Selected Movie </h1>
             {
                 selectedMovie.title ? (
                     <>
-                        <h2> {selectedMovie.title} </h2>
-
-                        <h3> {genres.map(genre => genre.name).join(', ')} </h3>
-
+                        <h1> {selectedMovie.title} </h1>
                         <img src={selectedMovie.poster} alt={selectedMovie.title} />
                         <p> {selectedMovie.description} </p>
+
+                        <h3> Genres: {genres.map(genre => genre.name).join(', ')} </h3>
+
                     </>
                 ) : (
                     <p> No Movie Selected </p>
