@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useState } from 'react';
 import './Details.css';
+import { useHistory } from "react-router-dom";
+import Button from '@mui/material/Button';
+
 //NEED MORE INFORMATION FROM THE DATABASE..... 
 // import { useEffect } from "react";
 
@@ -12,6 +15,7 @@ function Details() {
     const movies = useSelector((store) => store.movies);
     const selectedMovie = useSelector(store => store.selectedMovie);
     const [genres, setGenres] = useState([]);
+    const history = useHistory();
 
     //on page load run getGenre function
     useEffect(() => {
@@ -29,6 +33,10 @@ function Details() {
             .catch(err => console.log(`error in get`, err));
         //Log selectedMovie.id
         console.log(`GET GENRE`, selectedMovie.id);
+    }
+
+    const goBack = () => {
+        history.push('/');
     }
 
     // console.log(genres);
@@ -54,6 +62,9 @@ function Details() {
                         <p> No Movie Selected </p>
                     )
                 }
+                <Button 
+                variant = "outlined"
+                onClick={goBack}> Go back to Movie List</Button>
             </div>
         </section>
     </>
