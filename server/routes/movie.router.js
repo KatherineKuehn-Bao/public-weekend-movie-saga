@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
       console.log('ERROR: Get all movies', err);
       res.sendStatus(500)
     })
-
 });
 
 router.post('/', (req, res) => {

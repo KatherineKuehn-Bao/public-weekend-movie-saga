@@ -8,21 +8,24 @@ function AddMovie() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    //data from redux
-    // const movies = useSelector(store => store.movies);
+    //Create State for newMovie Object
+    let [newMovie, setNewMovie] = useState({
+        title: '',
+        poster: '',
+        description: '',
+        genre_id: ''
+    });
 
-    //local state for form inputs
-    let [title, setTitle] = useState('');
-    let [poster, setPoster] = useState('');
-    let [description, setDescription] = useState('');
-
-    //handle submit
-    const handleClick = (event) => {
+    //handle name Change 
+    const handleNameChange = (event, property) => {
+        console.log(`event happened`);
+        setNewMovie({ ...newMovie, [property]: event.target.value })
+    }
+    //add newMovie - DISPATCH  ADD_MOVIE payload: newMovie
+    const addNewMovie = (event) => {
         event.preventDefault();
-        console.log('new movie', title, poster, description, genre_id);
-        dispatch({ type: 'ADD_MOVIE', payload: { title, poster, description } });
+        dispatch({ type: 'ADD_MOVIE', payload: newMovie });
     };
-
     //cancel and send to home screen 
     const cancelClick = (event) => {
         alert('You are leaving the page and will be brought back to the home screen')
@@ -32,42 +35,42 @@ function AddMovie() {
     return (
         <div>
             <h1> Add Movie </h1>
-            <form onSubmit={handleClick}>
+            <form onSubmit={addNewMovie}>
                 <input
-                    type="text"
                     placeholder="movie title"
-                    value={title}
-                    onChange={(evt) => setTitle(evt.target.value)} />
+                    type="text"
+                    value={newMovie.title}
+                    onChange={(event) => handleNameChange(event, 'title')} />
 
                 <input
-                    type="text"
                     placeholder="image url"
-                    value={poster}
-                    onChange={(evt) => setPoster(evt.target.value)} />
+                    type="text"
+                    value={newMovie.poster}
+                    onChange={(event) => handleNameChange(event, 'poster')} />
 
                 <input
-                    type="text"
                     placeholder="description"
-                    value={description}
-                    onChange={(evt) => setDescription(evt.target.value)} />
+                    type="text"
+                    value={newMovie.description}
+                    onChange={(event) => handleNameChange(event, 'description')} />
 
-            //Add Genre DropDown
+                {/* Add Genre DropDown */}
                 <label for="genre"> Choose a genre: </label>
                 <select name="genre">
-                    <option value="Adventure">Adventure</option>
-                    <option value="Animated">Animated</option>
-                    <option value="Biographical">Biographical</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Disaster">Disaster</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Epic">Epic</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Musical">Musical</option>
-                    <option value="Romantic">Romantic</option>
-                    <option value="Science Fiction">Science Fiction</option>
-                    <option value="Space-Opera">Space-Opera</option>
-                    <option value="Superhero">Superhero</option>
-
+                    ADD VALUE OF ID
+                    <option value={genre_id}>Adventure</option>
+                    <option value="2">Animated</option>
+                    <option value="3">Biographical</option>
+                    <option value="4">Comedy</option>
+                    <option value="5">Disaster</option>
+                    <option value="6">Drama</option>
+                    <option value="7">Epic</option>
+                    <option value="8">Fantasy</option>
+                    <option value="9">Musical</option>
+                    <option value="10">Romantic</option>
+                    <option value="11">Science Fiction</option>
+                    <option value="12">Space-Opera</option>
+                    <option value="13">Superhero</option>
                 </select>
 
                 <button type="submit"> Save </button>
@@ -77,6 +80,5 @@ function AddMovie() {
 
         </div>
     );
-
 }
 export default AddMovie;

@@ -69,10 +69,11 @@ This should show:
 - an input field (for the movie poster image URL))[x]
 - a textarea (for the movie description)[x]
 - a dropdown (for the genres)
+[x]
 
 The Add Movie page should have the buttons:
 
-- `Cancel` button, which should bring the user to the Home/List Page
+- `Cancel` button, which should bring the user to the Home/List Page [x]
 - `Save` button, which should save these inputs in the database and bring the user to the Home/List Page (which now has the new movie)
 
 **Base functionality does not require being able to select more than one genre for a new movie**
