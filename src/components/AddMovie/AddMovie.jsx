@@ -18,6 +18,8 @@ function AddMovie() {
         description: '',
         genre_id: ''
     });
+    // let[genre_id, setGenre_id] = useState ('');
+
     useEffect(() => {
         dispatch({type: 'FETCH_GENRES' });
     }, []);
@@ -31,6 +33,8 @@ function AddMovie() {
     const addNewMovie = (event) => {
         event.preventDefault();
         dispatch({ type: 'ADD_MOVIE', payload: newMovie });
+        console.log(`clicked. added new movie`);
+        // dispatch({ type: 'ADD_GENRE', payload: genre_id});
     };
     //cancel and send to home screen 
     const cancelClick = (event) => {
@@ -38,17 +42,19 @@ function AddMovie() {
         history.push('/');
     }
 
+
+    console.log(`genres`, genres);
     return (
         <div>
             <h1> Add Movie </h1>
             <form onSubmit={addNewMovie}>
                 <input
-                    placeholder="movie title"
+                    placeholder="Movie Title"
                     type="text"
                     value={newMovie.title}
                     onChange={(event) => handleNameChange(event, 'title')} />
                 <input
-                    placeholder="image url"
+                    placeholder="Poster (Image url)"
                     type="text"
                     value={newMovie.poster}
                     onChange={(event) => handleNameChange(event, 'poster')} />
@@ -57,12 +63,13 @@ function AddMovie() {
                     type="text"
                     value={newMovie.description}
                     onChange={(event) => handleNameChange(event, 'description')} />
+                
                 {/* Add Genre DropDown */}
-                <select value={genre_id}
-                    onChange={(evt) => setOwner_id(evt.target.value)}>
+                <select value={newMovie.genre_id}
+                    onChange={(event) => handleNameChange(event, 'genre_id')}>
 
                     <option disabled value='0'>
-                        Pick One!
+                        Genres
                     </option>
                     {genres.map((genre) => {
                         return (
@@ -90,7 +97,7 @@ function AddMovie() {
                     <option value="13">Superhero</option>
                 </select> */}
 
-                <button type="submit"> Save </button>
+                <button type="submit"> Add New Movie </button>
             </form >
 
             <button onClick={cancelClick}> Cancel </button>

@@ -3,8 +3,8 @@ const router = express.Router();
 const pool = require('../modules/pool')
 
 //get all genres from DB 
-router.get('/', (req, res) => {
-  let query = `SELECT genres.name FROM genres`;
+router.get('/all', (req, res) => {
+  let query = `SELECT * FROM genres`;
   pool.query(query)
     .then(result => {
       res.send(result.rows);
@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
       console.log('error: get all genres', err);
       res.sendStatus(500)
     });
+  });
 
   router.get('/details', (req, res) => {
     //postico tested genre request for DB query 
