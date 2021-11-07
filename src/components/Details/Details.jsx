@@ -26,7 +26,7 @@ function Details() {
                 setGenres(response.data);
             })
             .catch(err => console.log(`error in get`, err));
-            //Log selectedMovie.id
+        //Log selectedMovie.id
         console.log(`GET GENRE`, selectedMovie.id);
     }
 
@@ -35,7 +35,7 @@ function Details() {
     console.log('selected movies', selectedMovie);
     console.log('genres', genres);
 
-    return (
+    return (<>
         <section>
             {
                 // if there is a selected movie, display HTML
@@ -53,6 +53,8 @@ function Details() {
                 )
             }
         </section>
+        //Add button to return to list page? 
+    </>
     );
 }
 
