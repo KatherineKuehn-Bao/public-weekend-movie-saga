@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import './MovieList.css'
+import './MovieList.css';
 import MovieItem from './MovieItem';
 
 //display list of all the movies
@@ -14,12 +14,17 @@ function MovieList() {
 
     return (
         <main>
-            <h1>MovieList</h1>
-            <section className="movies">
-                {movies.map(movie => (
-                    <MovieItem key={movie.id} movie={movie}/>
-                ))}
-            </section>
+            <div className="cards">
+                <h1>MovieList</h1>
+                <section className="movies">
+                    {movies.map(movie => (
+                        <MovieItem 
+                        className="item"
+                        key={movie.id}
+                        movie={movie} />
+                    ))}
+                </section>
+            </div>
         </main>
 
     );

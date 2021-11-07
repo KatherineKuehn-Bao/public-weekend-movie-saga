@@ -8,6 +8,11 @@ import AddMovie from '../AddMovie/AddMovie';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 function App() {
   //intialize dispatch 
   const dispatch = useDispatch();
@@ -23,10 +28,11 @@ function App() {
     <div className="App">
       <h1>The Movies Saga!</h1>
       <Router>
-        <nav>
-          <Link to="/addMovie"> Add Movie </Link>
-          <br/ >
+        <nav className="nav">
           <Link to="/"> Home Page </Link>
+          <br/ >
+          <Link to="/addMovie"> Add a New Movie </Link>
+
         </nav>
 
         <Route path="/" exact>

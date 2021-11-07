@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: rgb(155, 155, 140);
+  padding: 25px;
 }
 
 
@@ -21,4 +23,11 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.nav{
+display: flex;
+flex-direction: row;
+justify-content: center;
+gap: 10px;
 }
