@@ -53,7 +53,6 @@ function Details() {
                 )
             }
         </section>
-        //Add button to return to list page? 
     </>
     );
 }

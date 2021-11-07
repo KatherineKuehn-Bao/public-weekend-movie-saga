@@ -42,7 +42,6 @@ function AddMovie() {
         history.push('/');
     }
 
-
     console.log(`genres`, genres);
     return (
         <div>
