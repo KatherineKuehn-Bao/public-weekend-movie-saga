@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
@@ -8,13 +8,19 @@ function AddMovie() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    //data from redux
+    const genres = useSelector(store => store.genres);
+
     //Create State for newMovie Object
-    let [newMovie, setNewMovie] = useState({
+    const [newMovie, setNewMovie] = useState({
         title: '',
         poster: '',
         description: '',
         genre_id: ''
     });
+    useEffect(() => {
+        dispatch({type: 'FETCH_GENRES' });
+    }, []);
 
     //handle name Change 
     const handleNameChange = (event, property) => {
@@ -41,21 +47,32 @@ function AddMovie() {
                     type="text"
                     value={newMovie.title}
                     onChange={(event) => handleNameChange(event, 'title')} />
-
                 <input
                     placeholder="image url"
                     type="text"
                     value={newMovie.poster}
                     onChange={(event) => handleNameChange(event, 'poster')} />
-
                 <input
                     placeholder="description"
                     type="text"
                     value={newMovie.description}
                     onChange={(event) => handleNameChange(event, 'description')} />
-
                 {/* Add Genre DropDown */}
-                <label for="genre"> Choose a genre: </label>
+                <select value={genre_id}
+                    onChange={(evt) => setOwner_id(evt.target.value)}>
+
+                    <option disabled value='0'>
+                        Pick One!
+                    </option>
+                    {genres.map((genre) => {
+                        return (
+                            <option key={genre.id} value={genre.id}>
+                                {genre.name}
+                            </option>
+                        );
+                    })}
+                </select>
+                {/* <label for="genre"> Choose a genre: </label>
                 <select name="genre">
                     ADD VALUE OF ID
                     <option value={genre_id}>Adventure</option>
@@ -71,7 +88,7 @@ function AddMovie() {
                     <option value="11">Science Fiction</option>
                     <option value="12">Space-Opera</option>
                     <option value="13">Superhero</option>
-                </select>
+                </select> */}
 
                 <button type="submit"> Save </button>
             </form >
