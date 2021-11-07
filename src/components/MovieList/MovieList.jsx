@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import './MovieList.css';
-import MovieItem from './MovieItem';
+import MovieItem from '../MovieItem/MovieItem';
 
 //display list of all the movies
 function MovieList() {

@@ -17,8 +17,11 @@ function MovieItem({ movie }) {
 
     return (
         <div className="container">
-            <div key={movie.id} onClick={() => handleClick(movie)} >
-                <h3>{movie.title}</h3>
+            <div 
+            key={movie.id} 
+            onClick={() => handleClick(movie)} 
+            >
+                <h3 className="title">{movie.title}</h3>
                 <img src={movie.poster} alt={movie.title} />
             </div>
         </div>

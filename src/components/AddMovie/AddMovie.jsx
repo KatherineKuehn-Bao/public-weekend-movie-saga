@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import Stack from '@mui/material/Stack';
+
+
 
 //Form to add new movie
 function AddMovie() {
@@ -16,12 +26,12 @@ function AddMovie() {
         title: '',
         poster: '',
         description: '',
-        genre_id: ''
+        genre_id: 0
     });
     // let[genre_id, setGenre_id] = useState ('');
 
     useEffect(() => {
-        dispatch({type: 'FETCH_GENRES' });
+        dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
     //handle name Change 
@@ -47,59 +57,55 @@ function AddMovie() {
         <div>
             <h1> Add Movie </h1>
             <form onSubmit={addNewMovie}>
-                <input
-                    placeholder="Movie Title"
-                    type="text"
-                    value={newMovie.title}
-                    onChange={(event) => handleNameChange(event, 'title')} />
-                <input
-                    placeholder="Poster (Image url)"
-                    type="text"
-                    value={newMovie.poster}
-                    onChange={(event) => handleNameChange(event, 'poster')} />
-                <input
-                    placeholder="description"
-                    type="text"
-                    value={newMovie.description}
-                    onChange={(event) => handleNameChange(event, 'description')} />
-                
-                {/* Add Genre DropDown */}
-                <select value={newMovie.genre_id}
-                    onChange={(event) => handleNameChange(event, 'genre_id')}>
+                <Stack spacing={2}>
 
-                    <option disabled value='0'>
-                        Genres
-                    </option>
-                    {genres.map((genre) => {
-                        return (
-                            <option key={genre.id} value={genre.id}>
-                                {genre.name}
-                            </option>
-                        );
-                    })}
-                </select>
-                {/* <label for="genre"> Choose a genre: </label>
-                <select name="genre">
-                    ADD VALUE OF ID
-                    <option value={genre_id}>Adventure</option>
-                    <option value="2">Animated</option>
-                    <option value="3">Biographical</option>
-                    <option value="4">Comedy</option>
-                    <option value="5">Disaster</option>
-                    <option value="6">Drama</option>
-                    <option value="7">Epic</option>
-                    <option value="8">Fantasy</option>
-                    <option value="9">Musical</option>
-                    <option value="10">Romantic</option>
-                    <option value="11">Science Fiction</option>
-                    <option value="12">Space-Opera</option>
-                    <option value="13">Superhero</option>
-                </select> */}
+                    <TextField
+                        variant="filled"
+                        placeholder="Movie Title"
+                        type="text"
+                        value={newMovie.title}
+                        onChange={(event) => handleNameChange(event, 'title')} />
+                    <TextField
+                        variant="filled"
+                        placeholder="Poster (Image url)"
+                        type="text"
+                        value={newMovie.poster}
+                        onChange={(event) => handleNameChange(event, 'poster')} />
+                    <TextField
+                        variant="filled"
+                        placeholder="description"
+                        type="text"
+                        value={newMovie.description}
+                        onChange={(event) => handleNameChange(event, 'description')} />
 
-                <button type="submit"> Add New Movie </button>
+                    {/* Add Genre DropDown */}
+                    <Select value={newMovie.genre_id}
+                        onChange={(event) => handleNameChange(event, 'genre_id')}>
+                        <MenuItem 
+                        disabled value='0'>
+                            Genres
+                        </MenuItem>
+                        {genres.map((genre) => {
+                            return (
+                                <MenuItem key={genre.id} value={genre.id}>
+                                    {genre.name}
+                                </MenuItem>
+                            );
+                        })}
+                    </Select>
+
+                    <Button
+                        variant="contained"
+                        type="submit"> Add New Movie </Button>
+                </Stack>
             </form >
-
-            <button onClick={cancelClick}> Cancel </button>
+            <Stack spacing={5}>
+                <Button
+                    variant="contained"
+                    color="error"
+                    onClick={cancelClick}
+                > Cancel </Button>
+            </Stack>
 
         </div>
     );

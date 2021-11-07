@@ -4,7 +4,7 @@
     align-content: space-around;
 }
 .cards{
-    background-color: sandybrown;
+    background-color: hsla(28, 90%, 69%, 0.832);
     padding: auto;
     margin: 15px 5px 15px 15px;
 
@@ -12,9 +12,12 @@
 .container {
     padding: 25px;
 }
+.title{
+    text-align: center;
+}
 
 h1{
-    padding-top: 15px;
+    padding-top: 25px;
 }
 
 /* .container {

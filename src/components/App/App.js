@@ -1,7 +1,7 @@
 import { HashRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import MovieList from '../MovieList/MovieList'
-import MovieItem from '../MovieList/MovieItem';
+import MovieItem from '../MovieItem/MovieItem';
 import Details from '../Details/Details';
 import AddMovie from '../AddMovie/AddMovie';
 //add dispatch and use effect
