@@ -14,7 +14,8 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    yield takeEvery ('ADD_MOVIE', addMovie);
+    yield takeEvery('FETCH_GENRES', fetchGenres);
+    yield takeEvery('ADD_MOVIE', addMovie);
 }
 // get all movies from the DB
 function* fetchAllMovies() {
@@ -22,18 +23,25 @@ function* fetchAllMovies() {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
-
     } catch {
         console.log('get all error');
     }
-        
+}
+function* fetchGenres() {
+    try {
+        const genres = yield axios.get('/api/genre/all');
+        console.log('get genres:', genres.data);
+        yield put({ type: 'SET_GENRES', payload: genres.data });
+    } catch (error) {
+        console.log('get genres Error', error);
+    }
 }
 //Add new movie to server then get movie data 
-function* addMovie(action){
-    try{
-        yield axios.post('/api/movie', action.payload );
-        yield put ({type: 'FETCH_MOVIES'});
-    } catch(err){
+function* addMovie(action) {
+    try {
+        yield axios.post('/api/movie', action.payload);
+        yield put({ type: 'FETCH_MOVIES' });
+    } catch (err) {
         console.log('error in POST', err);
     }
 }
@@ -60,7 +68,7 @@ const genres = (state = [], action) => {
     }
 }
 //create reducer to hold selected movie for details view 
-const selectedMovie= (state ='', action) => {
+const selectedMovie = (state = '', action) => {
     switch (action.type) {
         case 'SET_SELECTED_MOVIE':
             return action.payload;
@@ -84,7 +92,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={storeInstance}>
-        <App />
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
