@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useState } from 'react';
+import './Details.css';
 //NEED MORE INFORMATION FROM THE DATABASE..... 
 // import { useEffect } from "react";
 
@@ -37,21 +38,23 @@ function Details() {
 
     return (<>
         <section>
-            {
-                // if there is a selected movie, display HTML
-                selectedMovie.title ? (
-                    <>
-                        <h1> {selectedMovie.title} </h1>
-                        <img src={selectedMovie.poster} alt={selectedMovie.title} />
-                        <p> {selectedMovie.description} </p>
-                        {/* list each genre for selectedMovie */}
-                        <h3> Genres: {genres.map(genre => genre.name).join(', ')} </h3>
+            <div className="selectedCard">
+                {
+                    // if there is a selected movie, display HTML
+                    selectedMovie.title ? (
+                        <>
+                            <h1> {selectedMovie.title} </h1>
+                            <img src={selectedMovie.poster} alt={selectedMovie.title} />
+                            <p> {selectedMovie.description} </p>
+                            {/* list each genre for selectedMovie */}
+                            <h3> Genres: {genres.map(genre => genre.name).join(', ')} </h3>
 
-                    </>
-                ) : (
-                    <p> No Movie Selected </p>
-                )
-            }
+                        </>
+                    ) : (
+                        <p> No Movie Selected </p>
+                    )
+                }
+            </div>
         </section>
     </>
     );
